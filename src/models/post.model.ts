@@ -17,7 +17,7 @@ const PostSchema = new Schema<Post>(
       ref: 'User',
     },
     category: {
-      type: Schema.Types.ObjectId,
+      type: Number,
       ref: 'Category',
     },
     slug: {

@@ -12,7 +12,7 @@ export interface User {
   name: string
   email: string
   password: string
-  role: string
+  role: number
 }
 
 export interface Category {

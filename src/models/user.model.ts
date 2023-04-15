@@ -3,13 +3,8 @@ import bcrypt from 'bcrypt'
 import { nanoid } from 'nanoid'
 import { User } from '../interfaces/models.interface'
 
-const UserSchema = new Schema<User>(
+export const UserSchema = new Schema<User>(
   {
-    _id: {
-      type: String,
-      required: true,
-      default: () => nanoid(10),
-    },
     name: {
       type: String,
       required: true,
@@ -24,9 +19,9 @@ const UserSchema = new Schema<User>(
       required: true,
     },
     role: {
-      type: String,
+      type: Number,
       required: true,
-      default: 'user',
+      ref: 'Role',
     },
   },
   {
@@ -43,9 +38,10 @@ UserSchema.methods.encryptPassword = async (
 }
 
 UserSchema.methods.validatePassword = async function (
-  password: string
+  password: string,
+  reqPassword: string
 ): Promise<boolean> {
-  return bcrypt.compare(password, this.password)
+  return bcrypt.compare(reqPassword, password)
 }
 
 export const UserModel = model('User', UserSchema)

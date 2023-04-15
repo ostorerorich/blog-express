@@ -3,7 +3,8 @@ declare global {
     interface ProcessEnv {
       NODE_ENV: 'development' | 'production' | 'test'
       PORT: number
-      MONGOURL: string
+      MONGO_URL: string
+      JWT_TOKEN: string
     }
   }
 }
